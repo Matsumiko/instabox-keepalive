@@ -1,0 +1,19 @@
+{
+  "name": "instabox-keepalive",
+  "version": "1.0.0",
+  "description": "Keep an instabox machine awake with activity leases, from Cloudflare Workers or any host with Node.",
+  "type": "module",
+  "bin": { "instabox-keepalive": "src/cli.js" },
+  "scripts": {
+    "tick": "node src/cli.js tick",
+    "status": "node src/cli.js status",
+    "release": "node src/cli.js release",
+    "watch": "node src/cli.js watch",
+    "test": "node --test test/*.test.js",
+    "deploy": "wrangler deploy"
+  },
+  "engines": { "node": ">=18" },
+  "keywords": ["instabox", "keepalive", "activity-lease", "cloudflare-workers"],
+  "license": "MIT",
+  "files": ["src", "README.md", "LICENSE"]
+}

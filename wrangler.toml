@@ -1,0 +1,21 @@
+name = "instabox-keepalive"
+main = "src/worker.js"
+compatibility_date = "2026-07-01"
+# No nodejs_compat needed: the Worker uses fetch, crypto.randomUUID and JSON only.
+
+# Every 5 minutes. The lease lives TTL seconds; keep TTL >= 3x this interval so a
+# late or skipped trigger cannot let the machine idle out.
+[triggers]
+crons = ["*/5 * * * *"]
+
+[vars]
+# One machine ID (m_...) or name per entry, or nothing at all to keep every
+# machine the API key can see.
+MACHINES = ""
+LEASE = "keepalive"
+TTL = "900"
+
+# The API key is a secret, never a var:
+#   npx wrangler secret put INSTABOX_API_KEY
+# Optional, to require ?token= on the HTTP endpoint:
+#   npx wrangler secret put TOKEN
